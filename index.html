@@ -110,7 +110,7 @@
         <span class="price-badge">$90</span>
         <h3>Spaghetti</h3>
         <p>Orden para 2 personas</p>
-        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 90)">Agregar spaguetti</button>
+        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 90)">Agregar spaghetti</button>
     </div>
 </div>
 
@@ -163,9 +163,9 @@
         </div>
 
         <h2 id="total-final" style="text-align:right; color:var(--yellow); font-size:1.8rem;">Total: $0</h2>
-        <p style="font-size:0.7rem; text-align:center; color:#888;">* Al dar click en enviar, se abrirá tu WhatsApp. No olvides adjuntar tu captura si pagaste por banco.</p>
+        <p style="font-size:0.7rem; text-align:center; color:#888;">* Al dar click en enviar, se abrirá tu WhatsApp. No olvides enviar tu captura si pagaste por banco.</p>
         
-        <button class="btn" style="background:var(--green); height:60px; font-size:1.2rem;" onclick="sendWhatsApp()">🚀 ENVIAR PEDIDO POR WHATSAPP</button>
+        <button class="btn" style="background:var(--green); height:60px; font-size:1.2rem;" onclick="sendWhatsApp()">🚀 ENVIAR PEDIDO </button>
         <button class="btn btn-sel" onclick="closeCart()">Seguir Comprando</button>
     </div>
 </div>
@@ -273,10 +273,10 @@
 
         info.style.display = (m === 'Efectivo') ? 'none' : 'block';
         if(m === 'Transferencia') {
-            txt.innerHTML = "🏦 <strong>CLABE: 7229 6901 0212 7908 18</strong> <br>🏦 ( STP MERCADO PAGO )<br>Por favor toma la captura de tu pago.";
+            txt.innerHTML = "🏦 <strong>CLABE: 7229 6901 0212 7908 18</strong> <br>🏦 ( STP Pizza Cherry )<br>Por favor enviar la captura de su pago.";
             btnMp.style.display = 'none';
         } else if(m === 'Tarjeta') {
-            txt.innerHTML = "💳 <strong>Pago con Tarjeta:</strong> Se abrirá Mercado Pago en una ventana nueva.";
+            txt.innerHTML = "💳 <strong>Pago con Tarjeta:</strong> no olvides enviar su comprobante.";
             btnMp.style.display = 'block';
         }
         calculateFinalTotal();
