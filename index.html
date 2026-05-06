@@ -6,7 +6,7 @@
     <title>Pizza Cherry - Sistema de Pedidos Profesional</title>
     <style>
         :root {
-            --red: #e63946; --dark: #121212; --gray: #1e1e1e; --yellow: #ffb703; --white: #ffffff; --green: #25d366; --blue: #009ee3;
+            --red: #e25d28; --dark: #121212; --gray: #1e1e1e; --yellow: #ffb703; --white: #ffffff; --green: #25d366; --blue: #009ee3;
         }
         body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--white); margin: 0; padding-bottom: 100px; }
         header { background: #000; padding: 25px; text-align: center; border-bottom: 4px solid var(--red); }
@@ -110,7 +110,7 @@
         <span class="price-badge">$90</span>
         <h3>Spaghetti</h3>
         <p>Orden para 2 personas</p>
-        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 90)">Agregar spagketti</button>
+        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 90)">Agregar spaguetti</button>
     </div>
 </div>
 
@@ -123,7 +123,7 @@
             <p><strong>Refresco 2L:</strong></p>
             <select id="sel-refresco" onchange="updateCocaExtra()">
                 <option value="Sabor">Sabor (Cualquier sabor disponible.)</option>
-                <option value="Coca">Coca Cola (+ $10.00)</option>
+                <option value="Coca">Coca Cola (+ $15.00)</option>
             </select>
         </div>
         <div id="flavorList" style="max-height:300px; overflow-y:auto; background:#000;"></div>
@@ -150,26 +150,23 @@
             <input type="text" id="c-fachada" placeholder="Color Fachada" style="width:48%;">
         </div>
 
-        <h3>Método de Pago</h3>
+        <h3>Forma de Pago</h3>
         <div class="payment-methods">
             <div class="pay-option active" id="p-efe" onclick="setPay('Efectivo')">Efectivo</div>
-            <div class="pay-option" id="p-tra" onclick="setPay('Transferencia')">Transf.</div>
+            <div class="pay-option" id="p-tra" onclick="setPay('Transferencia')">Transferencia</div>
             <div class="pay-option" id="p-tar" onclick="setPay('Tarjeta')">Tarjeta (+4%)</div>
         </div>
 
-        <div id="trans-input" style="display:none; background:#000; padding:15px; border:1px solid var(--yellow); border-radius:8px;">
-            <p style="font-size:0.8rem; color:var(--yellow); margin:0;">CLABE: <strong>7229 6901 0212  7908 18</strong> (STP Mercado Pago)</p>
-            <p style="font-size:0.75rem; margin:10px 0 5px 0;">No olvides enviar el comprobante de su pago:</p>
-            <input type="file" id="comprobante" accept="image/*" style="font-size:0.8rem; background:transparent; border:none; padding:0;">
+        <div id="info-pago-extra" style="display:none; background:#000; padding:15px; border-radius:8px; border:1px solid var(--yellow); margin:10px 0;">
+            <p id="txt-pago-inst" style="font-size:0.85rem; margin:0;"></p>
+            <button id="btn-mp" class="btn" style="background:var(--blue); display:none;" onclick="window.open('https://link.mercadopago.com.mx/donrichipizzas', '_blank')">PAGAR AHORA</button>
         </div>
 
-        <div id="mp-info" style="display:none; background:#001529; padding:10px; border-left:4px solid var(--blue);">
-            <p style="font-size:0.8rem;">Pagarás vía <strong>Mercado Pago</strong> al confirmar.</p>
-        </div>
-
-        <h2 id="total-final" style="text-align:right; color:var(--yellow);">Total: $0</h2>
-        <button class="btn" style="background:var(--green);" onclick="sendWhatsApp()">🚀 ENVIAR POR WHATSAPP</button>
-        <button class="btn btn-sel" onclick="closeCart()">Volver</button>
+        <h2 id="total-final" style="text-align:right; color:var(--yellow); font-size:1.8rem;">Total: $0</h2>
+        <p style="font-size:0.7rem; text-align:center; color:#888;">* Al dar click en enviar, se abrirá tu WhatsApp. No olvides adjuntar tu captura si pagaste por banco.</p>
+        
+        <button class="btn" style="background:var(--green); height:60px; font-size:1.2rem;" onclick="sendWhatsApp()">🚀 ENVIAR PEDIDO POR WHATSAPP</button>
+        <button class="btn btn-sel" onclick="closeCart()">Seguir Comprando</button>
     </div>
 </div>
 
@@ -248,7 +245,7 @@
     function updateCocaExtra() {
         const val = document.getElementById('sel-refresco').value;
         current.refresco = val;
-        current.extra = val === 'Coca' ? 10 : 0;
+        current.extra = val === 'Coca' ? 15 : 0;
         current.price = current.basePrice + current.extra;
     }
 
@@ -269,9 +266,20 @@
         selectedPay = m;
         document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('active'));
         document.getElementById('p-' + m.substring(0,3).toLowerCase()).classList.add('active');
-        document.getElementById('trans-input').style.display = m === 'Transferencia' ? 'block' : 'none';
-        document.getElementById('mp-info').style.display = m === 'Tarjeta' ? 'block' : 'none';
-        calculateTotal();
+        
+        const info = document.getElementById('info-pago-extra');
+        const txt = document.getElementById('txt-pago-inst');
+        const btnMp = document.getElementById('btn-mp');
+
+        info.style.display = (m === 'Efectivo') ? 'none' : 'block';
+        if(m === 'Transferencia') {
+            txt.innerHTML = "🏦 <strong>CLABE: 7229 6901 0212 7908 18</strong> <br>🏦 ( STP MERCADO PAGO )<br>Por favor toma la captura de tu pago.";
+            btnMp.style.display = 'none';
+        } else if(m === 'Tarjeta') {
+            txt.innerHTML = "💳 <strong>Pago con Tarjeta:</strong> Se abrirá Mercado Pago en una ventana nueva.";
+            btnMp.style.display = 'block';
+        }
+        calculateFinalTotal();
     }
 
     function calculateTotal() {
