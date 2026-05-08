@@ -262,7 +262,7 @@
         document.getElementById('cart-total').innerText = "$" + total;
     }
 
-    function setPay(m) {
+   function setPay(m) {
         selectedPay = m;
         document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('active'));
         document.getElementById('p-' + m.substring(0,3).toLowerCase()).classList.add('active');
@@ -273,19 +273,19 @@
 
         info.style.display = (m === 'Efectivo') ? 'none' : 'block';
         if(m === 'Transferencia') {
-            txt.innerHTML = "🏦 <strong>CLABE: 7229 6901 0212 7908 18</strong> <br>🏦 ( STP Pizza Cherry )<br>Por favor enviar la captura de su pago.";
+            txt.innerHTML = "🏦 <strong>CLABE: 7229 6901 0212 7908 18 <br>🏦 STP (Pizza Cherry)</strong><br>Por favor enviar captura de tu pago.";
             btnMp.style.display = 'none';
         } else if(m === 'Tarjeta') {
-            txt.innerHTML = "💳 <strong>Pago con Tarjeta:</strong> no olvides enviar tu comprobante.";
+            txt.innerHTML = "💳 <strong>Pago con Tarjeta:</strong> No olvides enviar tu comprobante.";
             btnMp.style.display = 'block';
         }
         calculateFinalTotal();
     }
 
-    function calculateTotal() {
+    function calculateFinalTotal() { 
         let total = cart.reduce((s, i) => s + i.price, 0);
         if(selectedPay === 'Tarjeta') total *= 1.04;
-        document.getElementById('total-final').innerText = "Total: $" + total.toFixed(0);
+        document.getElementById('total-final').innerText = "Total: $" + Math.round(total);
     }
 
     function getLocation() {
