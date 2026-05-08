@@ -35,8 +35,8 @@
 <header>
     <img src="IMG_0122.PNG" alt="Logo" style="max-height: 80px;">
     <div class="info-header">
-        <strong>Dirección:</strong> Av. Santa Rita mz:10 lt:4, Col. Campiña de Aragón<br>
-        <strong>Servicio a Domicilio:</strong> 12:00 PM - 10:00 PM
+        Av. Santa Rita mz:10 lt:4, Col. Campiña de Aragón<br> ECATEPEC DE MORELOS <br>
+        <strong>Servicio: 12:00 PM - 10:00 PM</strong> 
     </div>
 </header>
 
@@ -325,8 +325,9 @@
         });
         calculateTotal();
     }
-    function closeModal() { document.getElementById('pickerModal').style.display = 'none'; }
-    function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+    function openCart() { document.getElementById('cartModal').style.display='block'; calculateFinalTotal(); }
+    function closeCart() { document.getElementById('cartModal').style.display='none'; }
+    function closeModal() { document.getElementById('pickerModal').style.display='none'; }
 </script>
 </body>
 </html>
