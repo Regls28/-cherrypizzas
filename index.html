@@ -316,7 +316,12 @@
         window.open(`https://wa.me/5584269698?text=${encodeURIComponent(msg)}`);
     }
 
-        // Mostramos los productos en el carrito
+        function openCart() {
+    document.getElementById('cartModal').style.display = 'block';
+    const items = document.getElementById('cartItems');
+    items.innerHTML = '';
+    
+    // Mostramos los productos en el carrito
     cart.forEach((i, idx) => {
         items.innerHTML += `<div class="cart-item-detail">
             <strong>${i.type}</strong> - $${i.price}
@@ -327,7 +332,7 @@
     
     // Esta es la función clave que debe existir en tu script
     calculateFinalTotal();  
-    }
+    }  
     function closeModal() { 
         document.getElementById('pickerModal').style.display = 'none'; 
     }
