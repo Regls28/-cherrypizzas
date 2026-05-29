@@ -115,15 +115,15 @@
         <span class="price-badge">$250</span>
         <h3>C-2 (Rectangular)</h3>
         <p>12 rebanadas, orilla rellena de queso crema y ajonjolí + Refresco 2L</p>
-        <button class="btn" onclick="openPickerRect('C-2', 2, 250, true)">Elegir 2 sabores</button>
+        <button class="btn" onclick="openPickerRect('C-2', 2, 250, true, 15)">Elegir 2 sabores</button>
     </div>
 
     <div class="card">
         <span class="price-badge">$370</span>
-         <img src="images/pizza C-4.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
         <h3>C-4 (Rectangular)</h3>
-        <p>24 rebanadas, orilla rellena de queso crema y ajonjolí + Refresco 2L</p>
-        <button class="btn" onclick="openPickerRect('C-4', 4, 370, true)">Elegir 4 sabores</button>
+        <img src="images/pizza C-4.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
+        <p>24 rebanadas, orilla rellena de queso crema y ajonjolí + 1 coca cola de 1.75 lts o sabor de 2Lts</p>
+        <button class="btn" onclick="openPickerRect('C-4', 4, 370, true, 0)">Elegir 4 sabores</button>
     </div>
 
     <h2 style="color:var(--yellow); text-align:center; margin:30px 0;">Especialidades al 2x1</h2>
@@ -202,9 +202,8 @@
     <p id="geo-status" style="font-size:0.7rem; color:var(--yellow); text-align:center;"></p>
     <input type="text" id="c-nombre"  placeholder="Nombre completo">
     <input type="text" id="c-tel"     placeholder="Teléfono">
+    <input type="text" id="c-dir"     placeholder="Dirección y Entre Calles">
     <input type="text" id="c-colonia" placeholder="Colonia">
-    <input type="text" id="c-dir"     placeholder="Dirección">
-    <input type="text" id="c-colonia" placeholder="Entre que calles">
     <div style="display:flex;">
         <input type="text" id="c-zaguan"  placeholder="Color Zaguán"  style="width:48%;">
         <input type="text" id="c-fachada" placeholder="Color Fachada" style="width:48%;">
@@ -257,7 +256,7 @@ const especialidades = [
     {n:'NAPOLITANA',          i:'Salchicha, jamón, tocino, chorizo'}
 ];
 
-const ORILLA = {chica:25, mediana:30, grande:35, familiar:40};
+const ORILLA = {chica:20, mediana:25, grande:30, familiar:35};
 
 let cart=[], selectedPay='Efectivo', userLocation="No enviada";
 const linkMP="https://link.mercadopago.com.mx/pizzacherry91";
@@ -332,7 +331,7 @@ function renderVisor(){
             (showOrilla ? `
             <div class="chk-row">
                 <input type="checkbox" id="chk-o-${i}" ${sl.orilla?'checked':''} onchange="toggleOrilla(${i})">
-                <label for="chk-o-${i}">Orilla de queso crema</label>
+                <label for="chk-o-${i}">Orilla de queso</label>
                 <span class="chk-price">+$${op}</span>
             </div>` : '');
         extRow.appendChild(col);
@@ -420,7 +419,7 @@ function confirmOrder(){
     let flavors=[], extras=cur.cocaExtra;
     slots.forEach((sl,i)=>{
         const lbl=cur.limit>1?`Pizza ${i+1}: `:'';
-        let desc=lbl+(sl.mitad?`${sl.sabor1} 1/2 ${sl.sabor2}`:sl.sabor1);
+        let desc=lbl+(sl.mitad?`${sl.sabor1} / ${sl.sabor2} (½ y ½)`:sl.sabor1);
         if(sl.orilla){ desc+=' + Orilla de queso'; extras+=op; }
         if(sl.mitad) extras+=10;
         flavors.push(desc);
@@ -432,11 +431,12 @@ function confirmOrder(){
 function closeModal(){ document.getElementById('pickerModal').style.display='none'; }
 
 // ── PICKER RECT (C-2 y C-4 original) ─────────
-function openPickerRect(type, limit, price, hasRef){
-    cur2={type,limit,basePrice:price,hasRef,flavors:[],refresco:'Sabor',cocaExtra:0};
+function openPickerRect(type, limit, price, hasRef, cocaPrice=15){
+    cur2={type,limit,basePrice:price,hasRef,flavors:[],refresco:'Sabor',cocaExtra:0,cocaPrice};
     document.getElementById('pickerTitle2').innerText=type;
     document.getElementById('refresco-area2').style.display=hasRef?'block':'none';
     document.getElementById('sel-refresco2').value='Sabor';
+    document.querySelector('#sel-refresco2 option[value="Coca"]').innerText=`Cambiar a Coca Cola 1.75 lts (+ $${cocaPrice}.00)`;
 
     const vBox=document.getElementById('visual-preview-modal2');
     vBox.style.gridTemplateColumns=`repeat(${limit},1fr)`;
@@ -462,7 +462,7 @@ function pickRect(n){
 }
 function updateCocaExtra2(){
     const v=document.getElementById('sel-refresco2').value;
-    cur2.refresco=v; cur2.cocaExtra=v==='Coca'?15:0;
+    cur2.refresco=v; cur2.cocaExtra=v==='Coca'?cur2.cocaPrice:0;
 }
 function confirmOrder2(){
     if(cur2.flavors.length<cur2.limit){alert("Elige todos los sabores");return;}
