@@ -426,7 +426,7 @@ function confirmOrder(){
     let flavors=[], extras=cur.cocaExtra;
     slots.forEach((sl,i)=>{
         const lbl=cur.limit>1?`Pizza ${i+1}: `:'';
-        let desc=lbl+(sl.mitad?`${sl.sabor1} / ${sl.sabor2} (½ y ½)`:sl.sabor1);
+        let desc=lbl+(sl.mitad?`${sl.sabor1} 1/2 ${sl.sabor2} `:sl.sabor1);
         if(sl.orilla){ desc+=' + Orilla de queso'; extras+=op; }
         if(sl.mitad) extras+=10;
         flavors.push(desc);
