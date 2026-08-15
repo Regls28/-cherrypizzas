@@ -80,10 +80,10 @@
 
     <div class="card">
          <h3><p style="text-align:center;"><strong>Llevate 1 pizza Grande</strong></p></h3>
-        <h3></h3><span class="price-badge">$165</span>
+        <h3></h3><span class="price-badge">$175</span>
          <img src="images/pepp.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
         <h3><p style="text-align:center;"><strong>Hawaiana O Pepperoni</strong></p><h3/>
-        <button class="btn" onclick="openPicker('1 Pizza Grande', 1, ['HAWAIANA','PEPPERONI'], 165, false, 'grande')">Seleccionar sabor</button>
+        <button class="btn" onclick="openPicker('1 Pizza Grande', 1, ['HAWAIANA','PEPPERONI'], 175, false, 'grande')">Seleccionar sabor</button>
     </div>
 
     <div class="card">
@@ -91,61 +91,61 @@
          <img src="images/Combinada.PNG" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
         <h3><p style="text-align:center;"><strong>1 Pizza Con orilla rellena de queso crema y ajonjolí + Refresco de 2 lts</strong></p></h3>
         <div class="grid-2x1">
-            <button class="btn btn-sel" onclick="openPicker('PAQUETE 1 GRANDE ', 1, 'ALL', 210, true, '')">GRANDE $210</button>
-            <button class="btn btn-sel" onclick="openPicker('PAQUETE 1 FAMILIAR', 1, 'ALL', 240, true, '')">FAMILIAR $240</button>
+            <button class="btn btn-sel" onclick="openPicker('PAQUETE 1 GRANDE ', 1, 'ALL', 225, true, '')">GRANDE $225</button>
+            <button class="btn btn-sel" onclick="openPicker('PAQUETE 1 FAMILIAR', 1, 'ALL', 260, true, '')">FAMILIAR $260</button>
         </div>
     </div>
 
     <div class="card">
          <h3><p style="text-align:center;"><strong>Paquete 2</strong></p></h3>
-        <span class="price-badge">$320</span>
+        <span class="price-badge">$340</span>
          <img src="images/promo.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
          <h3><p>2 Pizzas Grandes (Hawaiana, Pepperoni, Ranchera) + Refresco 2Lts</p></h3>
-        <button class="btn" onclick="openPicker('PAQUETE 2', 2, ['HAWAIANA','PEPPERONI','RANCHERA'], 320, true, 'grande')">Elegir 2 sabores</button>
+        <button class="btn" onclick="openPicker('PAQUETE 2', 2, ['HAWAIANA','PEPPERONI','RANCHERA'], 340, true, 'grande')">Elegir 2 sabores</button>
     </div>
 
     <div class="card">
          <h3><p style="text-align:center;"><strong>Paquete 3</strong></p></h3>
         <h3><p>3 Pizzas A Elegir Grandes O Familiares + Refresco 2Lts</p></h3>
         <div class="grid-2x1">
-            <button class="btn btn-sel" onclick="openPicker('PAQUETE 3 GRANDES',   3, 'ALL', 420, true, 'grande')">GRANDE $420</button>
-            <button class="btn btn-sel" onclick="openPicker('PAQUETE 3 FAMILIARES', 3, 'ALL', 525, true, 'familiar')">FAMILIAR $525</button>
+            <button class="btn btn-sel" onclick="openPicker('PAQUETE 3 GRANDES',   3, 'ALL', 450, true, 'grande')">GRANDE $450</button>
+            <button class="btn btn-sel" onclick="openPicker('PAQUETE 3 FAMILIARES', 3, 'ALL', 550, true, 'familiar')">FAMILIAR $550</button>
         </div>
     </div>
 
     <!-- RECTANGULARES sin cambios -->
     <div class="card">
          <h3><p style="text-align:center;"><strong>C-2 (Rectangular)</strong></p></h3>
-         <span class="price-badge">$250</span>
+         <span class="price-badge">$270</span>
          <p style="text-align:center;"><strong>12 rebanadas, orilla rellena de queso crema y ajonjolí + Refresco de 2 lts</strong></p>
-        <button class="btn" onclick="openPickerRect('C-2', 2, 250, true, 15)">Elegir 2 sabores</button>
+        <button class="btn" onclick="openPickerRect('C-2', 2, 270, true, 15)">Elegir 2 sabores</button>
     </div>
 
     <div class="card">
          <h3><p style="text-align:center;"><strong>C-4 (Rectangular)</strong></p></h3>
-         <span class="price-badge">$370</span>
+         <span class="price-badge">$390</span>
          <img src="images/pizza C-4.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
      <   <p style="text-align:center;"><strong>Con 24 rebanadas + 1 coca cola de 1.75 lts O sabor de 2 lts</strong></p>
-        <button class="btn" onclick="openPickerRect('C-4', 4, 370, true, 0)">Elegir 4 sabores</button>
+        <button class="btn" onclick="openPickerRect('C-4', 4, 390, true, 0)">Elegir 4 sabores</button>
     </div>
     
     <div class="card">
       <h3><h2 style="color:var(--yellow); text-align:center; margin:30px 0;">Especialidades al 2x1</h2></h3>
      <div class="grid-2x1">
-        <div class="box-2x1" onclick="openPicker('2x1 CHICA',   2,'ALL',190,false,'chica')"><strong>CHICA</strong><br>$190<br><span>6 Rebanadas</span></div>
-        <div class="box-2x1" onclick="openPicker('2x1 MEDIANA', 2,'ALL',270,false,'mediana')"><strong>MEDIANA</strong><br>$270<br><span>8 Rebanadas</span></div>
-        <div class="box-2x1" onclick="openPicker('2x1 GRANDE',  2,'ALL',325,false,'grande')"><strong>GRANDE</strong><br>$325<br><span>8 Rebanadas</span></div>
-        <div class="box-2x1" onclick="openPicker('2x1 FAMILIAR',2,'ALL',375,true,'familiar')"><strong>FAMILIAR</strong><br>$375<br><span>10 Rebanadas + Refresco</span></div>
+        <div class="box-2x1" onclick="openPicker('2x1 CHICA',   2,'ALL',200,false,'chica')"><strong>CHICA</strong><br>$200<br><span>6 Rebanadas</span></div>
+        <div class="box-2x1" onclick="openPicker('2x1 MEDIANA', 2,'ALL',285,false,'mediana')"><strong>MEDIANA</strong><br>$285<br><span>8 Rebanadas</span></div>
+        <div class="box-2x1" onclick="openPicker('2x1 GRANDE',  2,'ALL',350,false,'grande')"><strong>GRANDE</strong><br>$350<br><span>8 Rebanadas</span></div>
+        <div class="box-2x1" onclick="openPicker('2x1 FAMILIAR',2,'ALL',400,true,'familiar')"><strong>FAMILIAR</strong><br>$400<br><span>10 Rebanadas + Refresco</span></div>
      </div>
     </div>
 
     <div class="card" style="margin-top:20px;">
                  <h3><p style="text-align:center;"><strong>spaghetti Gratinado</strong></p></h3>
-        <span class="price-badge">$90</span>
+        <span class="price-badge">$110</span>
         <img src="images/spaghetti.png" style="width:100%; border-radius:10px; margin:10px 0; object-fit:contain; max-height:250px; background:#000;">
         <p style="text-align:center;"><strong>jamon, crema y queso</strong>
         <p style="text-align:center;"><strong>Orden para 2 personas</strong></p>
-        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 90)">Agregar spaghetti</button>
+        <button class="btn btn-sel" onclick="addToCartDirect('Spaghetti', 110)">Agregar spaghetti</button>
     </div>
 
 </div>
